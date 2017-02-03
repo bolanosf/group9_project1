@@ -77,6 +77,15 @@ public class Main {
             model.computerMisses.add(fireAI);
         }
 
+        if(checkWin(model.playerHits) || (checkWin(model.playerHits) && checkWin(model.computerHits))) {
+            System.out.println("game won by player");
+            model.ResetGame();
+        }
+        else if(checkWin(model.computerHits) && (!checkWin(model.playerHits))){
+            System.out.println("game won by computer");
+            model.ResetGame();
+        }
+
         System.out.println(gson.toJson(model));
 
         return gson.toJson(model);
@@ -117,4 +126,10 @@ public class Main {
         return false;
     }
 
+    private static boolean checkWin(List<Coordinate> hits){
+        if(hits.size()==2){
+            return true;
+        }
+        return false;
+    }
 }
