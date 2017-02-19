@@ -77,7 +77,9 @@ public class Main {
             model.computerMisses.add(fireAI);
         }
 
-        
+        if(checkWin(model.playerHits,model.computerHits))
+            resetgame(model);
+
         System.out.println(gson.toJson(model));
 
         return gson.toJson(model);
@@ -93,6 +95,7 @@ public class Main {
         shipList.add(c);
         shipList.add(d);
         shipList.add(s);
+
         for (int i = 0; i<5; i++) {
             BattleshipModel temp = shipList.get(i);
             if (temp.start.Across == temp.end.Across && cord.Across == temp.start.Across) {
@@ -117,8 +120,9 @@ public class Main {
         }
         return false;
     }
-    
-     //resets model
+
+
+    //resets model
     private static void resetgame(GameModel model){
         model.ResetGame();
     }
@@ -148,6 +152,4 @@ public class Main {
         else
             return false;
     }
-    
-
 }
